@@ -9,13 +9,12 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-model Todo{
+model Todo {
   id String @id @default(uuid()) @map("_id")
   title String
   isCompleted Boolean @default(false)
   createdAt DateTime @default(now())
 }
-
 
 
 // um en relation zu post zbecho eifach im terminal prisma format iigeh,
@@ -25,7 +24,7 @@ model User {
   email          String @unique
   name           String
   hashedPassword String
- // posts          Post[]
+  // posts          Post[]
 }
 
 model Post {
@@ -42,3 +41,4 @@ model Post {
 
   @@index([slug])
 }
+

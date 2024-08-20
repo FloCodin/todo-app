@@ -2,6 +2,7 @@ import prisma from "@/lib/db";
 import Link from "next/link";
 import {createPost, deletePost, editPost} from "@/actions/actions";
 import Image from "next/image";
+import AddTodo from "@/app/components/todos/AddTodo";
 
 export default async function Home() {
     return(
@@ -12,8 +13,9 @@ export default async function Home() {
                     <span className="lowercase">w/</span>Server Actions
                 </h1>
 
+
                 <div className="flex justify-center flex-col items-center">
-                    {/* ipnut todo*/}
+                    <AddTodo/>
                     {/* map todos*/}
 
                 </div>
