@@ -1,11 +1,28 @@
-import prisma from "@/lib/db";
-import Link from "next/link";
-import {createPost, deletePost, editPost} from "@/actions/actions";
-import Image from "next/image";
+// import prisma from "@/lib/db";
 import AddTodo from "@/app/components/todos/AddTodo";
+import {prisma} from "@/app/utils/prisma";
+import {Prisma} from ".prisma/client";
+import SortOrder = Prisma.SortOrder;
+
+async function getData() {
+    const data = await prisma.todo.findMany({
+        select: {
+            title: true,
+            id: true,
+            isCompleted: true,
+        },
+        orderBy: {
+            createdAt: SortOrder.asc
+        }
+    })
+    return data;
+
+}
 
 export default async function Home() {
-    return(
+
+    const data = await getData();
+    return (
         <>
             <div className=" w-screen py-20 flex justify-center flex-col items-center">
                 <span className="text-4xl font-extrabold uppercase">Todo App</span>
@@ -17,6 +34,11 @@ export default async function Home() {
                 <div className="flex justify-center flex-col items-center">
                     <AddTodo/>
                     {/* map todos*/}
+                    <div className="flex flex-col items-center justify-center gap-5 mt-10 w-screen">
+                        {data.map((todo, id) => (
+                            <div id={todo.id}>{todo.title}</div>
+                        ))}
+                    </div>
 
                 </div>
             </div>
