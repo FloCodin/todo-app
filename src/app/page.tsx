@@ -38,7 +38,7 @@ export default async function Home() {
                     <AddTodo/>
                     {/* map todos*/}
                     <div className="flex flex-col items-center justify-center gap-5 mt-10 w-screen">
-                        {data.map((todo:todoProps, id) => (
+                        {data.map((todo:todoProps, id:todoProps) => (
                             <div className="w-full" key={todo.id}>
                                 <Todo todo={todo}/>
                             </div>
