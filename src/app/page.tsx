@@ -1,9 +1,8 @@
-// import prisma from "@/lib/db";
 import AddTodo from "@/app/components/todos/AddTodo";
 import {prisma} from "@/app/utils/prisma";
-import {Prisma} from ".prisma/client";
-import SortOrder = Prisma.SortOrder;
 import Todo from "@/app/components/todos/Todo";
+import {Prisma} from "../../prisma/generated/client";
+import SortOrder = Prisma.SortOrder;
 
 async function getData() {
     const data = await prisma.todo.findMany({
