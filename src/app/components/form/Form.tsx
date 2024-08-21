@@ -3,7 +3,7 @@ import {formProps} from "@/app/types";
 import {useRef} from "react";
 
 const Form = ({children, action, className, onSubmit}: formProps) => {
-    const ref = useRef<HTMLFormElement>()
+    const ref = useRef<HTMLFormElement>(null)
 
     const formAction = async (formData: FormData) => {
         if (action) {
