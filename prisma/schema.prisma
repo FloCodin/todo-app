@@ -5,9 +5,14 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 model Todo {
   id String @id @default(uuid()) @map("_id")
@@ -19,26 +24,5 @@ model Todo {
 
 // um en relation zu post zbecho eifach im terminal prisma format iigeh,
 // so tuets automatisch alles wo vo user wichtig isch au bi post adde
-model User {
-  id             String @id @default(cuid())
-  email          String @unique
-  name           String
-  hashedPassword String
-  // posts          Post[]
-}
 
-model Post {
-  id        String  @id @default(cuid())
-  title     String
-  slug      String  @unique
-  content   String
-  published Boolean @default(false)
-  //user      User    @relation(fields: [authorId], references: [id])
-  //authorId    String
-
-  updatedAt DateTime @updatedAt
-  createdAt DateTime @default(now()) @map("created_at")
-
-  @@index([slug])
-}
 
