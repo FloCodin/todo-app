@@ -5,7 +5,7 @@ import {useRef} from "react";
 const Form = ({children, action, className, onSubmit}: formProps) => {
     const ref = useRef<HTMLFormElement>()
 
-    const formAction = async (formData) => {
+    const formAction = async (formData: FormData) => {
         if (action) {
             await action(formData);
         }
