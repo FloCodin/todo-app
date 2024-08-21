@@ -1,13 +1,13 @@
 import Form from "@/app/components/form/Form";
-import Input from "@/app/components/input/input";
-import Button from "@/app/components/button/button";
-import {createTodo} from "@/actions";
+import Input from "@/app/components/input/Input";
+import Button from "@/app/components/button/Button";
+import * as actions from "@/actions";
 
 
 const AddTodo = () => {
 return (
   <div >
-      <Form action={createTodo}>
+      <Form action={actions.createTodo}>
           <div className="flex gap-2">
               <Input name="input" type="text" placeholder="Add Todo Here..."/>
               <Button type="submit" text="Add" bgColor="bg-blue-600"/>
