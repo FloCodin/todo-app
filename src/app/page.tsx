@@ -25,10 +25,11 @@ export default async function Home() {
     const data = await getData();
     return (
         <>
+
             <div className=" w-screen py-20 flex justify-center flex-col items-center">
-                <span className="text-4xl font-extrabold uppercase">Todo App</span>
-                <h1 className="text-5xl font-extrabold uppercase mb-5 text-center">
-                    <span className="lowercase">w/</span>Server Actions
+                <span className="text-4xl font-bold uppercase">Crud Project</span>
+                <h1 className="text-5xl font-extrabold  mb-5 text-center">
+                    <span className="lowercase">by/</span> Florian R.
                 </h1>
 
 
