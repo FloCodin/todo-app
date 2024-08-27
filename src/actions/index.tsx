@@ -67,6 +67,11 @@ export async function changePriority (formData: FormData) {
         },
     });
 
+    if (!todo) {
+        return; // Optional: Fehlerbehandlung, falls das Todo nicht existiert
+    }
+
+    // Zyklisch die Priorität ändern: von 1 -> 2 -> 3 -> 1
     const newPriority = todo.priority < 3 ? todo.priority + 1 : 1;
 
     await prisma.todo.update({
