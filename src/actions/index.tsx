@@ -82,7 +82,5 @@ export async function changePriority(formData: FormData): Promise<void> {
             priority: newPriority,
         },
     });
-}
-
     revalidatePath("/");
 }
