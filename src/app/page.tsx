@@ -1,10 +1,7 @@
 import AddTodo from "@/app/components/todos/AddTodo";
 import {prisma} from "@/app/utils/prisma";
 import Todo from "@/app/components/todos/Todo";
-import {Prisma} from "../../prisma/generated/client";
-import SortOrder = Prisma.SortOrder;
-import {DO_NOT_USE_OR_YOU_WILL_BE_FIRED_EXPERIMENTAL_REACT_NODES} from "react";
-import todo from "@/app/components/todos/Todo";
+import { Prisma } from '@prisma/client'
 import {todoProps} from "@/app/types";
 
 async function getData() {
@@ -15,8 +12,8 @@ async function getData() {
             isCompleted: true,
         },
         orderBy: {
-            createdAt: SortOrder.desc
-        }
+            createdAt: Prisma.SortOrder.desc,
+        } as any
     });
 
 }
@@ -38,7 +35,7 @@ export default async function Home() {
                     <AddTodo/>
                     {/* map todos*/}
                     <div className="flex flex-col items-center justify-center gap-5 mt-10 w-screen">
-                        {data.map((todo:todoProps, id:todoProps) => (
+                        {data.map((todo:todoProps) => (
                             <div className="w-full" key={todo.id}>
                                 <Todo todo={todo}/>
                             </div>
