@@ -10,6 +10,8 @@ async function getData() {
             title: true,
             id: true,
             isCompleted: true,
+            createdAt: true,
+            priority: true,
         },
         orderBy: {
             createdAt: Prisma.SortOrder.desc,
@@ -18,10 +20,10 @@ async function getData() {
 
 }
 
-
 export default async function Home() {
 
     const data = await getData();
+
     return (
         <>
 

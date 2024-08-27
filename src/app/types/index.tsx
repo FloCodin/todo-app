@@ -25,4 +25,6 @@ export interface todoProps {
     title?: string | null;
     isCompleted: boolean;
     createdAt?: Date;
+    priority?: Number;
+
 }

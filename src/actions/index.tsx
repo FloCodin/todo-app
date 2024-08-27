@@ -2,7 +2,7 @@
 
 import {prisma} from "@/app/utils/prisma";
 import {revalidatePath} from "next/cache";
-
+import todo from "@/app/components/todos/Todo";
 export async function createTodo(formData: FormData){
     const input = formData.get('input') as string;
     if (!input.trim()){
@@ -58,3 +58,4 @@ export async function deleteTodo (formdata: FormData){
     })
     revalidatePath("/")
 }
+
