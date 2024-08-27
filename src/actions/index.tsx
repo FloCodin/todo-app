@@ -2,6 +2,7 @@
 
 import {prisma} from "@/app/utils/prisma";
 import {revalidatePath} from "next/cache";
+import todo from "@/app/components/todos/Todo";
 
 export async function createTodo(formData: FormData){
     const input = formData.get('input') as string;
@@ -72,7 +73,7 @@ export async function changePriority (formData: FormData) {
     }
 
     // Zyklisch die Priorität ändern: von 1 -> 2 -> 3 -> 1
-    const newPriority = todo.priority < 3 ? todo.priority + 1 : 1;
+    const newPriority = prisma.todo.priority < 3 ? prisma.todo.priority + 1 : 1;
 
     await prisma.todo.update({
         where: {
