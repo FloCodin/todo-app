@@ -13,21 +13,27 @@ const Todo = ({todo}: { todo: todoProps }) => {
         // border: todo.priority ? 'border-amber-400 border-solid border-4' : 'none',
     }
 
-
+    const todoPriorityStyle = todo.priority <= 1
+        ? 'border-amber-400 border-solid border-4'
+        : todo.priority <=2
+            ? 'border-amber-400 border-solid border-8'
+            : todo.priority <=3
+            ? 'border-amber-600 border-solid border-10':'border-blue-600 border-solid border-10';
 
     const formattedDate = new Date (todo.createdAt).toLocaleDateString('de-CH');
 
     return (
         <div style={todoStyle}
-             className="w-10/12 mx-auto flex items-center justify-between bg-slate-900 py-4 px-20 rounded-2xl text-white border">
+             className={` w-10/12 mx-auto flex items-center justify-between bg-slate-900 py-4 px-20 rounded-2xl text-white ${todoPriorityStyle}`}>
             <ChangeTodo todo={todo}/>
             <span className="text-center font-bold uppercase grow">{todo.title} </span>
-            <span className={"font-semibold"}> <br/> was created at: {formattedDate}</span>
+            <span className={"font-semibold text-md"}> <br/>created at: {formattedDate}</span>
             <div className="flex items-center mx-2">
                 <EditTodo todo={todo}/>
             </div>
             <div className="flex items-center "><DeleteTodo todo={todo}/>
             </div>
+            <div> <PriorityTodo todo={todo}/></div>
 
         </div>
     )

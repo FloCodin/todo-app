@@ -2,7 +2,7 @@
 
 import {prisma} from "@/app/utils/prisma";
 import {revalidatePath} from "next/cache";
-import todo from "@/app/components/todos/Todo";
+
 export async function createTodo(formData: FormData){
     const input = formData.get('input') as string;
     if (!input.trim()){
@@ -59,3 +59,24 @@ export async function deleteTodo (formdata: FormData){
     revalidatePath("/")
 }
 
+export async function changePriority (formData: FormData) {
+    const inputId = formData.get("inputId") as string;
+    const todo = await prisma.todo.findUnique({
+        where: {
+            id: inputId,
+        },
+    });
+
+    const newPriority = todo.priority < 3 ? todo.priority + 1 : 1;
+
+    await prisma.todo.update({
+        where: {
+            id: inputId
+        },
+        data: {
+            priority: newPriority
+        }
+    });
+
+    revalidatePath("/");
+}

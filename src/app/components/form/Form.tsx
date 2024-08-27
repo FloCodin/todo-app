@@ -11,7 +11,6 @@ const Form = ({children, action, className, onSubmit}: formProps) => {
         }
         ref.current?.reset()
     }
-
     return (
         <form action={formAction}
               onSubmit={onSubmit}
