@@ -14,11 +14,11 @@ const Todo = ({todo}: { todo: todoProps }) => {
     }
 
     const todoPriorityStyle = todo.priority <= 1
-        ? 'border-amber-400 border-solid border-4'
+        ? 'border-amber-400 border-solid border-2'
         : todo.priority <=2
-            ? 'border-amber-400 border-solid border-8'
+            ? 'border-amber-400 border-solid border-4'
             : todo.priority <=3
-            ? 'border-amber-600 border-solid border-10':'border-blue-600 border-solid border-10';
+            ? 'border-emerald-400 border-solid border-8':'border-blue-600 border-solid border-10';
 
     const formattedDate = new Date (todo.createdAt).toLocaleDateString('de-CH');
 
