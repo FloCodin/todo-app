@@ -60,8 +60,8 @@ export async function deleteTodo (formdata: FormData){
     revalidatePath("/")
 }
 
-export async function changePriority (formData: FormData) {
-    const inputId = formData.get("inputId") as string;
+export async function changePriority(formData: FormData): Promise<void> {
+    const inputId: string = formData.get("inputId") as string;
     const todo = await prisma.todo.findUnique({
         where: {
             id: inputId,
@@ -69,20 +69,20 @@ export async function changePriority (formData: FormData) {
     });
 
     if (!todo) {
-        return; // Optional: Fehlerbehandlung, falls das Todo nicht existiert
+        return; // Optional: You can also handle this scenario by throwing an error or returning a message
     }
 
-    // Zyklisch die Priorität ändern: von 1 -> 2 -> 3 -> 1
     const newPriority = prisma.todo.priority < 3 ? prisma.todo.priority + 1 : 1;
 
     await prisma.todo.update({
         where: {
-            id: inputId
+            id: inputId,
         },
         data: {
-            priority: newPriority
-        }
+            priority: newPriority,
+        },
     });
+}
 
     revalidatePath("/");
 }
