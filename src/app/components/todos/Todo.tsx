@@ -5,13 +5,7 @@ import EditTodo from "@/app/components/todos/EditTodo";
 import DeleteTodo from "@/app/components/todos/DeleteTodo";
 import PriorityTodo from "@/app/components/todos/PriorityTodo";
 
-export interface todoProps {
-    id: string;
-    title?: string | null;
-    isCompleted: boolean;
-    createdAt?: Date;
-    priority?: string;
-}
+
 
 const Todo = ({todo}: { todo: todoProps }) => {
     const todoStyle = {
