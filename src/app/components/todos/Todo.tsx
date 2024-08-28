@@ -11,7 +11,7 @@ const Todo = ({todo}: { todo: todoProps }) => {
     const todoStyle = {
         textDecoration: todo.isCompleted ? 'line-through' : 'none',
         opacity: todo.isCompleted ? 0.5 : 1,
-        // border: todo.priority ? 'border-amber-400 border-solid border-4' : 'none',
+
     }
     const todoPriorityStyle = todo.priority <= 1
         ? 'border-amber-400 border-solid border-2'
@@ -20,7 +20,9 @@ const Todo = ({todo}: { todo: todoProps }) => {
             : todo.priority <=3
             ? 'border-red-500 border-solid border-8':'border-blue-600 border-solid border-10';
 
-    const formattedDate = new Date (todo.createdAt).toLocaleDateString('de-CH');
+    const formattedDate = todo.createdAt
+        ? new Date(todo.createdAt).toLocaleDateString('de-CH')
+        : ''; // Fallback to an empty string or any default value you prefer
 
     return (
         <div style={todoStyle}
