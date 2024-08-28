@@ -5,8 +5,6 @@ import Todo from "@/app/components/todos/Todo";
 import {Prisma} from '@prisma/client'
 import {todoProps} from "@/app/types";
 import SortOrder = Prisma.SortOrder;
-import { useState, useEffect } from 'react';
-import SortDropdown from '@/app/components/SortDropdown/SortDropdown';
 
 async function getAllToDos() {
     return await prisma.todo.findMany({
