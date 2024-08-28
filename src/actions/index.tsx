@@ -68,10 +68,12 @@ export async function changePriority(formData: FormData): Promise<void> {
     });
 
     if (!todo) {
-        return; // Optional: You can also handle this scenario by throwing an error or returning a message
+        return;
     }
 
-    const newPriority = prisma.todo.priority < 3 ? prisma.todo.priority + 1 : 1;
+    const newPriority = todo.priority < 3 ? todo.priority + 1 : 1;
+
+
 
     await prisma.todo.update({
         where: {
