@@ -38,11 +38,20 @@ export default async function Home() {
                     <AddTodo/>
                     {/* map todos*/}
                     <div className="flex flex-col items-center justify-center gap-5 mt-10 w-screen">
-                        {data.map((todo:todoProps) => (
-                            <div className="w-full" key={todo.id}>
-                                <Todo todo={todo}/>
-                            </div>
-                        ))}
+                        {data.map((item) => {
+                            const todo: todoProps = {
+                                id: item.id,
+                                createdAt: new Date(item.createdAt), // Assuming item.createdAt is a string
+                                title: item.title,
+                                priority: item.priority,
+                                isCompleted: item.isCompleted,
+                            };
+                            return (
+                                <div className="w-full" key={todo.id}>
+                                    <Todo todo={todo} />
+                                </div>
+                            );
+                        })}
                     </div>
 
                 </div>
