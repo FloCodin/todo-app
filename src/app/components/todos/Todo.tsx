@@ -16,6 +16,8 @@ const Todo = ({todo}: { todo: todoProps }) => {
     console.log("***********************")
     console.log(todo.priority)
     console.log("************************")
+
+
     const todoPriorityStyle = todo.priority <= 1
         ? 'border-amber-400 border-solid border-2'
         : todo.priority <=2
