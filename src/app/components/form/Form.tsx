@@ -24,7 +24,7 @@ const Form = ({children, action, className, onSubmit}: formProps) => {
 * Signatur luut kenny, vo de action
 * https://www.youtube.com/watch?v=9OoKXOq7ENo
 * */
-export default Form
+export default Form;
 
 
 

@@ -1,10 +1,14 @@
+"use client"
 import AddTodo from "@/app/components/todos/AddTodo";
 import {prisma} from "@/app/utils/prisma";
 import Todo from "@/app/components/todos/Todo";
-import { Prisma } from '@prisma/client'
+import {Prisma} from '@prisma/client'
 import {todoProps} from "@/app/types";
+import SortOrder = Prisma.SortOrder;
+import { useState, useEffect } from 'react';
+import SortDropdown from '@/app/components/SortDropdown/SortDropdown';
 
-async function getData() {
+async function getAllToDos() {
     return await prisma.todo.findMany({
         select: {
             title: true,
@@ -17,12 +21,11 @@ async function getData() {
             createdAt: Prisma.SortOrder.desc,
         } as any
     });
-
 }
 
 export default async function Home() {
 
-    const data = await getData();
+    const data = await getAllToDos();
 
     return (
         <>
@@ -35,9 +38,9 @@ export default async function Home() {
 
 
                 <div className="flex justify-center flex-col items-center">
+
                     <AddTodo/>
-                    {/* map todos*/}
-                    <div className="flex flex-col items-center justify-center gap-5 mt-10 w-screen">
+                        <div className="flex flex-col items-center justify-center gap-5 mt-10 w-screen ">
                         {data.map((item) => {
                             const todo: todoProps = {
                                 id: item.id,
@@ -48,7 +51,7 @@ export default async function Home() {
                             };
                             return (
                                 <div className="w-full" key={todo.id}>
-                                    <Todo todo={todo} />
+                                    <Todo todo={todo}/>
                                 </div>
                             );
                         })}
