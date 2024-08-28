@@ -2,6 +2,7 @@
 
 import {prisma} from "@/app/utils/prisma";
 import {revalidatePath} from "next/cache";
+import { Todo } from '@prisma/client';
 
 export async function createTodo(formData: FormData){
     const input = formData.get('input') as string;
@@ -65,15 +66,13 @@ export async function changePriority(formData: FormData): Promise<void> {
         where: {
             id: inputId,
         },
-    });
+    }) as Todo | null; // Typen explizit setzen
 
     if (!todo) {
         return;
     }
 
     const newPriority = todo.priority < 3 ? todo.priority + 1 : 1;
-
-
 
     await prisma.todo.update({
         where: {
