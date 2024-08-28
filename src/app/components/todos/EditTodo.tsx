@@ -24,12 +24,12 @@ const EditTodo = ({todo}: { todo: todoProps }) => {
 
     return (
         <>
-            <div>
+            <div className=" flex gap-5 items-center">
                 <Button onClick={handleEdit} text={<MdEdit/>} actionButton/>
                 {editTodoState ? (
                     <Form action={actions.editTodo} onSubmit={handleSubmit}>
                         <Input name="inputId" value={todo.id} type="hidden"/>
-                        <div>
+                        <div className="flex justify-center">
                             <Input
                                 name="newTitle"
                                 placeholder="Edit Todo..."

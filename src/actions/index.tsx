@@ -60,10 +60,23 @@ export async function deleteTodo (formdata: FormData){
     revalidatePath("/")
 }
 
-export async function setPriorityOnToDoItem(toDoItemId: string, newPriority: number): Promise<void> {
+export async function changePriority(formData: FormData): Promise<void> {
+    const inputId: string = formData.get("inputId") as string;
+    const todo = await prisma.todo.findUnique({
+        where: {
+            id: inputId,
+        },
+    }) as Todo | null; // Typen explizit setzen
+
+    if (!todo) {
+        return;
+    }
+
+    const newPriority = todo.priority < 3 ? todo.priority + 1 : 1;
+
     await prisma.todo.update({
         where: {
-            id: toDoItemId,
+            id: inputId,
         },
         data: {
             priority: newPriority,

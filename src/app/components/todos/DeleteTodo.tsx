@@ -11,7 +11,7 @@ const DeleteTodo = ({todo}: { todo: todoProps }) => {
     return(
         <Form action={actions.deleteTodo}>
             <Input name="inputId" type="hidden" value={todo.id}></Input>
-            <Button actionButton type="submit" bgColor="bg-red-400" text={"Delete"}></Button>
+            <Button actionButton type="submit" bgColor="bg-red-400" text={<FaTrash/>}></Button>
         </Form>
     )
 }

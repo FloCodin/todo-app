@@ -5,15 +5,15 @@ import *as action from "@/actions"
 import {todoProps} from "@/app/types";
 import {FaCheck} from "react-icons/fa";
 
-const ChangeTodo = ({todo}: { todo: todoProps }) => {
-    return (
+const ChangeTodo = ({todo}:todoProps) =>{
+    return(
         <Form action={action.changeStatus}>
             <Input name="inputId" value={todo.id} type="hidden"></Input>
             <Button
-                text={<FaCheck/>}
+                text={<FaCheck />}
                 type="submit"
                 actionButton
-                bgColor={todo.isCompleted ? 'bg-green-400' : 'bg-blue-500'}
+                bgColor={todo.isCompleted? 'bg-green-400': 'bg-blue-500'}
             >
             </Button>
         </Form>
