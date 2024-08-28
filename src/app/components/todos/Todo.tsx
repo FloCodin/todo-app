@@ -6,13 +6,13 @@ import DeleteTodo from "@/app/components/todos/DeleteTodo";
 import PriorityTodo from "@/app/components/todos/PriorityTodo";
 
 
+
 const Todo = ({todo}: { todo: todoProps }) => {
     const todoStyle = {
         textDecoration: todo.isCompleted ? 'line-through' : 'none',
         opacity: todo.isCompleted ? 0.5 : 1,
         // border: todo.priority ? 'border-amber-400 border-solid border-4' : 'none',
     }
-
     const todoPriorityStyle = todo.priority <= 1
         ? 'border-amber-400 border-solid border-2'
         : todo.priority <=2
