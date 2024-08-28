@@ -27,17 +27,13 @@ export default async function Home() {
     return (
         <>
 
-            <div className=" w-screen py-20 flex justify-center flex-col items-center">
-                <span className="text-4xl font-bold uppercase">Crud Project</span>
-                <h1 className="text-5xl font-extrabold  mb-5 text-center">
-                    <span className="lowercase">by/</span> Florian R.
-                </h1>
+                <h1>Crud Project by Florian R.</h1>
 
 
-                <div className="flex justify-center flex-col items-center">
+                <div>
                     <AddTodo/>
                     {/* map todos*/}
-                    <div className="flex flex-col items-center justify-center gap-5 mt-10 w-screen">
+                    <ul>
                         {data.map((item) => {
                             const todo: todoProps = {
                                 id: item.id,
@@ -47,15 +43,13 @@ export default async function Home() {
                                 isCompleted: item.isCompleted,
                             };
                             return (
-                                <div className="w-full" key={todo.id}>
+                                <li key={todo.id}>
                                     <Todo todo={todo} />
-                                </div>
+                                </li>
                             );
                         })}
-                    </div>
-
+                    </ul>
                 </div>
-            </div>
         </>
     )
 }

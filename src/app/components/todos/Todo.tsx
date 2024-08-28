@@ -13,35 +13,23 @@ const Todo = ({todo}: { todo: todoProps }) => {
         opacity: todo.isCompleted ? 0.5 : 1,
 
     }
-    console.log("***********************")
-    console.log(todo.priority)
-    console.log("************************")
 
-
-    const todoPriorityStyle = todo.priority <= 1
-        ? 'border-amber-400 border-solid border-2'
-        : todo.priority <=2
-            ? 'border-amber-400 border-solid border-4'
-            : todo.priority <=3
-            ? 'border-red-500 border-solid border-8':'border-blue-600 border-solid border-10';
+    if (todo.createdAt == undefined) {
+        return <h1>Error in ToDo. Please contact your administrator.</h1>
+    }
 
     const formattedDate = todo.createdAt
         ? new Date(todo.createdAt).toLocaleDateString('de-CH')
-        : 'to old '; // Fallback to an empty string or any default value you prefer
+        : 'Date conversion not working.'; // Fallback to an empty string or any default value you prefer
 
     return (
-        <div style={todoStyle}
-             className={` w-10/12 mx-auto flex items-center justify-between bg-slate-900 py-4 px-20 rounded-2xl text-white ${todoPriorityStyle}`}>
+        <div style={{'display': 'flex'}}>
             <ChangeTodo todo={todo}/>
-            <span className="text-center font-bold uppercase grow">{todo.title} </span>
-            <span className={"font-semibold text-md"}> <br/>created at: {formattedDate}</span>
-            <div className="flex items-center mx-2">
-                <EditTodo todo={todo}/>
-            </div>
-            <div className="flex items-center "><DeleteTodo todo={todo}/>
-            </div>
-            <div> <PriorityTodo todo={todo}/></div>
-
+            {todo.title}
+            created at: {formattedDate}
+            <EditTodo todo={todo}/>
+            <DeleteTodo todo={todo}/>
+            <PriorityTodo todo={todo}/>
         </div>
     )
 }
