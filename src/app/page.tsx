@@ -1,10 +1,8 @@
-"use client"
 import AddTodo from "@/app/components/todos/AddTodo";
 import {prisma} from "@/app/utils/prisma";
 import Todo from "@/app/components/todos/Todo";
 import {Prisma} from '@prisma/client'
 import {todoProps} from "@/app/types";
-import SortOrder = Prisma.SortOrder;
 
 async function getAllToDos() {
     return await prisma.todo.findMany({
